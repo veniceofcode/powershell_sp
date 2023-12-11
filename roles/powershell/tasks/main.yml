@@ -1,16 +1,14 @@
-  tasks:
-    - name: Disable RI before the start of Qlik Replication execution
-        - name: Run Powershell script
-          win_script:
-            script: "{{ playbook_dir }}/{{powershell_scripts_dir}}/{{powershell_script_name}}"
-            executable: powershell.exe
-          register: powershell_script_result
+  - name: Run Powershell script
+    win_script:
+      script: "{{ playbook_dir }}/{{powershell_scripts_dir}}/{{powershell_script_name}}"
+      executable: powershell.exe
+    register: powershell_script_result
 
-        - name: Display script output
-          debug:
-            var: powershell_script_result.stdout_lines
+  - name: Display script output
+    debug:
+      var: powershell_script_result.stdout_lines
 
-        - name: Fail the playbook if the script fails
-          fail:
-            msg: "Powershell script execution failed"
-          when: powershell_script_result.rc != 0
+  - name: Fail the playbook if the script fails
+    fail:
+      msg: "Powershell script execution failed"
+    when: powershell_script_result.rc != 0
