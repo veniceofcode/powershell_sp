@@ -1,0 +1,40 @@
+  tasks:
+    - name: Disable RI before the start of Qlik Replication execution
+      when: enable|default(true) |bool
+      block:
+        - name: Run Disable RI script
+          win_script:
+            script: "{{ playbook_dir }}/scripts/Qlik/DisableRI-Online.ps1"
+            executable: powershell.exe
+          register: disable_ri_result
+
+        - name: Display script output
+          debug:
+            var: disable_ri_result.stdout_lines
+
+        - name: Fail the playbook if the script fails
+          fail:
+            msg: "Disable RI script execution failed"
+          when: disable_ri_result.rc != 0
+      tags:
+        - disable_ri
+
+    - name: Enable RI and Reseed identity value after execution of Qlik Replication
+      when: disable|bool
+      block:
+        - name: Run Enable RI and Reseed script
+          win_script:
+            script: "{{ playbook_dir }}/scripts/Qlik/EnableRI-and-Reseed-Online.ps1"
+            executable: powershell.exe
+          register: enable_ri_result
+
+        - name: Display script output
+          debug:
+            var: enable_ri_result.stdout_lines
+
+        - name: Fail the playbook if the script fails
+          fail:
+            msg: "Enable RI and Reseed script execution failed"
+          when: enable_ri_result.rc != 0
+      tags:
+        - enable_ri
