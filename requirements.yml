@@ -3,3 +3,5 @@ collections:
 
   - name: infra.controller_configuration
     version: 2.2.5
+  - name: ansible.windows
+    version: 2.2.0
