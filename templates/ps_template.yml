@@ -1,0 +1,17 @@
+---
+controller_templates:
+  - name: Run Powershell Script
+    project: powershell_dev
+    job_type: run
+    playbook: playbooks/win_ps_hello_world_nc.yml
+    inventory: windows_machines_nc
+    execution_environment: Default execution environment
+    concurrent_jobs_enabled: false
+    ask_variables_on_launch: true
+    verbosity: 0
+    credentials:
+      - windows
+    extra_vars:
+      # for debugging errors with creds change to false
+      controller_configuration_credentials_secure_logging: true
+...
