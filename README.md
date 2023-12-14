@@ -1,5 +1,7 @@
 # An example playbook to run a poweshell script on a windows machine 
+### To Run
 
+` ansible-playbook -i inventory_windows.yml playbooks/win_ps_nc.yml `
 ### Example Output
 ```
 SSH password: 
