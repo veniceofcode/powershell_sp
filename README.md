@@ -1,4 +1,4 @@
-### An ansible playbook to run a powershell script that prints Hello, this is my script output on a windows machine 
+### Ansible playbook to run a powershell script that prints Hello, this is my script output on a windows machine 
 
 ## To Run
 
