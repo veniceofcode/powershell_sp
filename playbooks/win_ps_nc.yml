@@ -1,16 +1,15 @@
 - name: Run PowerShell script on Windows
   hosts: windows_machines_nc
   gather_facts: false
+
+  vars:
+    ansible_connection: winrm
+    ansible_winrm_scheme: https
+    ansible_winrm_port: 5986
+    ansible_winrm_transport: ntlm
+    ansible_winrm_cert_validation: ignore
   
-  tasks:
-    - name: Ensure WinRM is set up for Ansible
-      ansible.windows.winrm:
-        trusted_hosts: '*'
-        ansible_winrm_scheme: https
-        ansible_winrm_port: 5986
-        ansible_winrm_transport: ntlm
-        ansible_winrm_cert_validation: ignore
-        
+  tasks:   
     - name: Ping the Windows machine
       ansible.windows.win_ping:
 
