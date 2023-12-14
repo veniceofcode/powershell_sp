@@ -1,7 +1,13 @@
-## An ansible playbook to run a powershell script that prints Hello, this is my script output on a windows machine 
-### To Run
+### An ansible playbook to run a powershell script that prints Hello, this is my script output on a windows machine 
+
+## To Run
 
 ` ansible-playbook -i inventory_windows.yml playbooks/win_ps_nc.yml `
+
+## Note
+Please update the machine info with your target host in the inventory file before running the playbook
+
+
 ### Example Output
 ```
 SSH password: 
