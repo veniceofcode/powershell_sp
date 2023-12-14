@@ -10,6 +10,18 @@
     - name: Debug output of the ping result
       ansible.builtin.debug:
         var: ping_result
+        
+    - name: Get IP address of the FQDN
+      ansible.builtin.uri:
+        url: "{{ ansible_host }}"
+        return_content: true
+      register: fqdn_ip_result
+      ignore_errors: true
+
+    - name: Print IP address of the FQDN
+      ansible.builtin.debug:
+        var: fqdn_ip_result.parsed.json.fqdn.ip
+      when: fqdn_ip_result.status == 200
 
     - name: Create destination directory
       ansible.windows.win_shell: New-Item -ItemType Directory -Path C:\Temp -Force
