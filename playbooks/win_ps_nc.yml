@@ -2,9 +2,14 @@
   hosts: windows_machines_nc
   gather_facts: false
 
-  tasks:   
+  tasks:
     - name: Ping the Windows machine
       ansible.windows.win_ping:
+      register: ping_result
+
+    - name: Debug output of the ping result
+      ansible.builtin.debug:
+        var: ping_result
 
     - name: Create destination directory
       ansible.windows.win_shell: New-Item -ItemType Directory -Path C:\Temp -Force
