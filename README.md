@@ -1,4 +1,4 @@
-# An example playbook to run a poweshell script on a windows machine 
+## An example playbook to run a powershell script on a windows machine 
 ### To Run
 
 ` ansible-playbook -i inventory_windows.yml playbooks/win_ps_nc.yml `
